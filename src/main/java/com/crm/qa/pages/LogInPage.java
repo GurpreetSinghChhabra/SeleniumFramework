@@ -9,11 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 public class LogInPage extends TestBase {
 
     //Page Factory - Object Repository
-    @FindBy(xpath="//input[@type='submit']")
+    @FindBy(xpath="//div[text()='Login']")
     @CacheLookup
     WebElement LogInBtn;
 
-    @FindBy(name="username")
+    @FindBy(name="email")
     @CacheLookup
     WebElement username;
 
@@ -21,8 +21,8 @@ public class LogInPage extends TestBase {
     @CacheLookup
     WebElement password;
 
-    @FindBy(xpath ="//img[@class='img-responsive']")
-    WebElement crmLogo;
+    @FindBy(xpath ="//a[text()='Classic CRM']")
+    WebElement linkClassicFreeCRM;
 
     public LogInPage(){
         PageFactory.initElements(driver,this);
@@ -39,11 +39,20 @@ public class LogInPage extends TestBase {
         return driver.getTitle();
     }
 
-    public boolean validateCRMLogo(){
+    public boolean isUserNameFieldPresent(){
+        return username.isDisplayed();
+    }
 
-        boolean isDisplayed = crmLogo.isDisplayed();
-        return isDisplayed;
+    public boolean isPasswordFieldPresent(){
+        return password.isDisplayed();
+    }
 
+    public boolean verifyClassicCRMLinkPresent(){
+        return linkClassicFreeCRM.isDisplayed();
+    }
+
+    public String getLogInPageUrl(){
+        return driver.getCurrentUrl();
     }
 
 

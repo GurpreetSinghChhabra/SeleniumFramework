@@ -39,9 +39,14 @@ public class HomePageTest extends TestBase {
     }
 
     @Test
+    public void verifyLoggedInUserName(){
+        Assert.assertTrue(homePage.verifyLoggedInUserName("Gurpreet Chhabra"),"Verify User Name after Log In");
+    }
+    @Test
     public void VerifyContactsLinkTest(){
-        testUtil.switchToFrame("mainpanel");
+        //testUtil.switchToFrame("mainpanel");
         homePage.clickContactsLink();
+        System.out.println("Test");
     }
 
     @AfterMethod

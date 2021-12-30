@@ -6,6 +6,7 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,6 +36,7 @@ public class TestBase {
     public static WebDriver driver;
     public  static Properties prop;
     public static WebDriverWait wait;
+    public static Actions action;
     public static EventFiringWebDriver e_driver;
     public static WebEventListener eventListener;
 
@@ -70,6 +72,7 @@ public class TestBase {
             driver = e_driver;
 
             wait = new WebDriverWait(driver,30);
+            action=new Actions(e_driver);
             driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIME_OUT, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT,TimeUnit.SECONDS);
             driver.get(prop.getProperty("url"));

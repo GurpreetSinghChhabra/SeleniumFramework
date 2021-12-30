@@ -9,6 +9,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends TestBase {
 
+    @FindBy(id="top-header-menu")
+    WebElement topHeader;
+
+    @FindBy(xpath = "//div[@class='right menu']//span[@class='user-display']")
+    WebElement loggedInUserName;
+
+    @FindBy(id="main-nav")
+    WebElement navigationMenu;
+
     @FindBy(xpath="//td[contains(text(),'User: group automation ')]")
     WebElement userNameLabel;
 
@@ -18,6 +27,9 @@ public class HomePage extends TestBase {
 
     @FindBy(xpath="//a[contains(text(),'New Contact')]")
     WebElement newContactLink;
+
+    @FindBy(xpath="//div[contains(@class,'menu-item')]//span[text()='Contacts']")
+    WebElement contactsMenuLink;
 
     @FindBy(xpath="//a[contains(text(),'Deals')]")
     WebElement dealsLink;
@@ -37,8 +49,15 @@ public class HomePage extends TestBase {
         return userNameLabel.isDisplayed();
     }
 
+    public boolean verifyTopHeader(){
+        return topHeader.isDisplayed();
+    }
+
     public ContactsPage clickContactsLink(){
-        contactsLink.click();
+        //contactsLink.click();
+        //return new ContactsPage();
+        action.moveToElement(contactsMenuLink).build().perform();
+        contactsMenuLink.click();
         return new ContactsPage();
     }
 
@@ -65,6 +84,10 @@ public class HomePage extends TestBase {
         //action.moveToElement(contactsLink,point.getX(),point.getY()).build().perform();
         action.moveToElement(contactsLink).build().perform();
         newContactLink.click();
+    }
+
+    public boolean verifyLoggedInUserName(String userName){
+        return userName.equals(loggedInUserName.getText());
     }
 
 }
