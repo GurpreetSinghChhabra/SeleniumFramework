@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CRMRegressionSuite" verbose="1" >
+    <!--<suite name="CRMRegressionSuite" parallel="classes" thread-count="2" verbose="1">-->
+    <listeners>
+        <listener class-name="com.crm.qa.util.MyTransformer"></listener>
+        <!--<listener class-name="com.crm.qa.extentreportlistener.TestListener"></listener>-->
+        <listener class-name="com.crm.qa.extentreportlistener.ExtentReporterNG"></listener>
+    </listeners>
+    <test name="CRMTests">
+        <classes>
+            <class name="com.crm.qa.testcases.HomePageTest"/>
+            <class name="com.crm.qa.testcases.LogInPageTest"/>
+            <class name="com.crm.qa.testcases.ContactsPageTest"/>
+        </classes>
+    </test>
+</suite>
